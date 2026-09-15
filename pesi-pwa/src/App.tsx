@@ -22,11 +22,11 @@ export default function App() {
   if (loading) return <div style={{ padding: 16 }}>Carregando...</div>
   return (
     <BrowserRouter basename="/PESI-Ponto_v1">
-      {session && <nav style={{ padding: 12, background: '#0f4c81', color: '#fff', display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-        <b>PESI</b><span style={{ fontSize: 12 }}>{session.perfil}</span>
-        <Link to="/" style={{ color: '#fff' }}>Início</Link>
-        {session.perfil === 'ADMIN' && <><Link to="/admin" style={{ color: '#fff' }}>Admin</Link><Link to="/escolas" style={{ color: '#fff' }}>Escolas</Link><Link to="/oficineiros" style={{ color: '#fff' }}>Oficineiros</Link><Link to="/relatorios" style={{ color: '#fff' }}>Relatórios</Link></>}
-        <button onClick={signOut} style={{ marginLeft: 'auto', padding: '6px 12px' }}>Sair</button>
+      {session && <nav style={{ padding:'10px 16px', background:'#0f4c81', color:'#fff', display:'flex', gap:10, alignItems:'center', flexWrap:'wrap', position:'sticky', top:0, zIndex:10 }}>
+        <b style={{ letterSpacing:.5 }}>PESI PONTO</b><span style={{ fontSize:12, opacity:.8 }}>{session.nome} · {session.perfil}</span>
+        <Link to="/" style={{ color:'#fff', marginLeft:8 }}>Início</Link>
+        {session.perfil === 'ADMIN' && <><Link to="/admin" style={{ color:'#fff' }}>Admin</Link><Link to="/escolas" style={{ color:'#fff' }}>Escolas</Link><Link to="/oficineiros" style={{ color:'#fff' }}>Oficineiros</Link><Link to="/relatorios" style={{ color:'#fff' }}>Relatórios</Link></>}
+        <button onClick={signOut} className="btn-ghost" style={{ marginLeft:'auto', padding:'6px 12px', borderColor:'#fff', color:'#fff', background:'transparent' }}>Sair</button>
       </nav>}
       <Routes>
         <Route path="/login" element={session ? <Navigate to="/" replace /> : <Login />} />
