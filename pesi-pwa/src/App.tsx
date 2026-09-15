@@ -8,6 +8,10 @@ import AdminDashboard from './pages/AdminDashboard'
 import Escolas from './pages/Escolas'
 import OficineirosList from './pages/OficineirosList'
 import Relatorios from './pages/Relatorios'
+import Usuarios from './pages/Usuarios'
+import Financeiro from './pages/Financeiro'
+import Ordens from './pages/Ordens'
+import Aprovacoes from './pages/Aprovacoes'
 
 function Guard({ allow, children }: { allow: string[]; children: React.ReactNode }) {
   const s = useAuth(x => x.session)
@@ -25,7 +29,8 @@ export default function App() {
       {session && <nav style={{ padding:'10px 16px', background:'#0f4c81', color:'#fff', display:'flex', gap:10, alignItems:'center', flexWrap:'wrap', position:'sticky', top:0, zIndex:10 }}>
         <b style={{ letterSpacing:.5 }}>PESI PONTO</b><span style={{ fontSize:12, opacity:.8 }}>{session.nome} · {session.perfil}</span>
         <Link to="/" style={{ color:'#fff', marginLeft:8 }}>Início</Link>
-        {session.perfil === 'ADMIN' && <><Link to="/admin" style={{ color:'#fff' }}>Admin</Link><Link to="/escolas" style={{ color:'#fff' }}>Escolas</Link><Link to="/oficineiros" style={{ color:'#fff' }}>Oficineiros</Link><Link to="/relatorios" style={{ color:'#fff' }}>Relatórios</Link></>}
+        {session.perfil === 'ADMIN' && <><Link to="/admin" style={{ color:'#fff' }}>Admin</Link><Link to="/escolas" style={{ color:'#fff' }}>Escolas</Link><Link to="/oficineiros" style={{ color:'#fff' }}>Oficineiros</Link><Link to="/usuarios" style={{ color:'#fff' }}>Usuários</Link><Link to="/financeiro" style={{ color:'#fff' }}>Financeiro</Link><Link to="/ordens" style={{ color:'#fff' }}>Ordens</Link><Link to="/relatorios" style={{ color:'#fff' }}>Relatórios</Link></>}
+        {(session.perfil === 'COORDENADOR' || session.perfil === 'DIRETOR') && <Link to="/aprovacoes" style={{ color:'#fff' }}>Aprovações</Link>}
         <button onClick={signOut} className="btn-ghost" style={{ marginLeft:'auto', padding:'6px 12px', borderColor:'#fff', color:'#fff', background:'transparent' }}>Sair</button>
       </nav>}
       <Routes>
@@ -35,7 +40,11 @@ export default function App() {
         <Route path="/admin" element={<Guard allow={['ADMIN']}><AdminDashboard /></Guard>} />
         <Route path="/escolas" element={<Guard allow={['ADMIN']}><Escolas /></Guard>} />
         <Route path="/oficineiros" element={<Guard allow={['ADMIN','COORDENADOR','DIRETOR']}><OficineirosList /></Guard>} />
+        <Route path="/usuarios" element={<Guard allow={['ADMIN']}><Usuarios /></Guard>} />
+        <Route path="/financeiro" element={<Guard allow={['ADMIN']}><Financeiro /></Guard>} />
+        <Route path="/ordens" element={<Guard allow={['ADMIN']}><Ordens /></Guard>} />
         <Route path="/relatorios" element={<Guard allow={['ADMIN','COORDENADOR','DIRETOR']}><Relatorios /></Guard>} />
+        <Route path="/aprovacoes" element={<Guard allow={['ADMIN','COORDENADOR','DIRETOR']}><Aprovacoes /></Guard>} />
       </Routes>
     </BrowserRouter>
   )
