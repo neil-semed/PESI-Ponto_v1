@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom'
 import { useAuth } from './stores/auth'
 import Login from './pages/Login'
+import Signup from './pages/Signup'
 import OficineiroHome from './pages/OficineiroHome'
 import AdminDashboard from './pages/AdminDashboard'
 
@@ -26,6 +27,7 @@ export default function App() {
       </nav>}
       <Routes>
         <Route path="/login" element={session ? <Navigate to="/" replace /> : <Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/" element={!session ? <Navigate to="/login" replace /> : session.perfil === 'ADMIN' ? <Navigate to="/admin" replace /> : <Guard allow={['OFICINEIRO','COORDENADOR','DIRETOR','ADMIN']}><OficineiroHome /></Guard>} />
         <Route path="/admin" element={<Guard allow={['ADMIN']}><AdminDashboard /></Guard>} />
       </Routes>
