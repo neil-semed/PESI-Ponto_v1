@@ -5,6 +5,9 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import OficineiroHome from './pages/OficineiroHome'
 import AdminDashboard from './pages/AdminDashboard'
+import Escolas from './pages/Escolas'
+import OficineirosList from './pages/OficineirosList'
+import Relatorios from './pages/Relatorios'
 
 function Guard({ allow, children }: { allow: string[]; children: React.ReactNode }) {
   const s = useAuth(x => x.session)
@@ -19,10 +22,10 @@ export default function App() {
   if (loading) return <div style={{ padding: 16 }}>Carregando...</div>
   return (
     <BrowserRouter basename="/PESI-Ponto_v1">
-      {session && <nav style={{ padding: 12, background: '#0f4c81', color: '#fff', display: 'flex', gap: 12, alignItems: 'center' }}>
-        <b>PESI</b><span>{session.perfil}</span>
+      {session && <nav style={{ padding: 12, background: '#0f4c81', color: '#fff', display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+        <b>PESI</b><span style={{ fontSize: 12 }}>{session.perfil}</span>
         <Link to="/" style={{ color: '#fff' }}>Início</Link>
-        {session.perfil === 'ADMIN' && <Link to="/admin" style={{ color: '#fff' }}>Admin</Link>}
+        {session.perfil === 'ADMIN' && <><Link to="/admin" style={{ color: '#fff' }}>Admin</Link><Link to="/escolas" style={{ color: '#fff' }}>Escolas</Link><Link to="/oficineiros" style={{ color: '#fff' }}>Oficineiros</Link><Link to="/relatorios" style={{ color: '#fff' }}>Relatórios</Link></>}
         <button onClick={signOut} style={{ marginLeft: 'auto', padding: '6px 12px' }}>Sair</button>
       </nav>}
       <Routes>
@@ -30,6 +33,9 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={!session ? <Navigate to="/login" replace /> : session.perfil === 'ADMIN' ? <Navigate to="/admin" replace /> : <Guard allow={['OFICINEIRO','COORDENADOR','DIRETOR','ADMIN']}><OficineiroHome /></Guard>} />
         <Route path="/admin" element={<Guard allow={['ADMIN']}><AdminDashboard /></Guard>} />
+        <Route path="/escolas" element={<Guard allow={['ADMIN']}><Escolas /></Guard>} />
+        <Route path="/oficineiros" element={<Guard allow={['ADMIN','COORDENADOR','DIRETOR']}><OficineirosList /></Guard>} />
+        <Route path="/relatorios" element={<Guard allow={['ADMIN','COORDENADOR','DIRETOR']}><Relatorios /></Guard>} />
       </Routes>
     </BrowserRouter>
   )
