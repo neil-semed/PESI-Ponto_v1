@@ -18,7 +18,7 @@ export default function App() {
   useEffect(() => { init() }, [init])
   if (loading) return <div style={{ padding: 16 }}>Carregando...</div>
   return (
-    <BrowserRouter basename="/pesi-pwa">
+    <BrowserRouter basename="/PESI-Ponto_v1">
       {session && <nav style={{ padding: 12, background: '#0f4c81', color: '#fff', display: 'flex', gap: 12, alignItems: 'center' }}>
         <b>PESI</b><span>{session.perfil}</span>
         <Link to="/" style={{ color: '#fff' }}>Início</Link>

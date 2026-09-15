@@ -3,7 +3,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/pesi-pwa/',
+  base: '/PESI-Ponto_v1/',
   plugins: [
     react(),
     VitePWA({
@@ -16,8 +16,8 @@ export default defineConfig({
         theme_color: '#0f4c81',
         background_color: '#ffffff',
         display: 'standalone',
-        scope: '/pesi-pwa/',
-        start_url: '/pesi-pwa/',
+        scope: '/PESI-Ponto_v1/',
+        start_url: '/PESI-Ponto_v1/',
         icons: [
           { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
