@@ -12,6 +12,7 @@ import Usuarios from './pages/Usuarios'
 import Financeiro from './pages/Financeiro'
 import Ordens from './pages/Ordens'
 import Aprovacoes from './pages/Aprovacoes'
+import InstallPWA from './components/InstallPWA'
 
 function Guard({ allow, children }: { allow: string[]; children: React.ReactNode }) {
   const s = useAuth(x => x.session)
@@ -31,6 +32,7 @@ export default function App() {
         <Link to="/" style={{ color:'#fff', marginLeft:8 }}>Início</Link>
         {session.perfil === 'ADMIN' && <><Link to="/admin" style={{ color:'#fff' }}>Admin</Link><Link to="/escolas" style={{ color:'#fff' }}>Escolas</Link><Link to="/oficineiros" style={{ color:'#fff' }}>Oficineiros</Link><Link to="/usuarios" style={{ color:'#fff' }}>Usuários</Link><Link to="/financeiro" style={{ color:'#fff' }}>Financeiro</Link><Link to="/ordens" style={{ color:'#fff' }}>Ordens</Link><Link to="/relatorios" style={{ color:'#fff' }}>Relatórios</Link></>}
         {(session.perfil === 'COORDENADOR' || session.perfil === 'DIRETOR') && <Link to="/aprovacoes" style={{ color:'#fff' }}>Aprovações</Link>}
+        <span style={{ marginLeft:'auto', display:'flex', gap:8, alignItems:'center' }}><InstallPWA /></span>
         <button onClick={signOut} className="btn-ghost" style={{ marginLeft:'auto', padding:'6px 12px', borderColor:'#fff', color:'#fff', background:'transparent' }}>Sair</button>
       </nav>}
       <Routes>
