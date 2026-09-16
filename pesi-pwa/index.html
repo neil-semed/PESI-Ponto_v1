@@ -1,13 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pesi-pwa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f4c81" />
+    <meta name="description" content="PESI Ponto — Programa Escola em Tempo Integral. Ponto do Oficineiro, validação do Coordenador e gestão Admin. PWA instalável, offline-first, GPS com raio por escola." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="PESI Ponto" />
+    <link rel="icon" type="image/svg+xml" href="/PESI-Ponto_v1/favicon.svg" />
+    <link rel="apple-touch-icon" href="/PESI-Ponto_v1/icons/icon-192.png" />
+    <link rel="preconnect" href="https://ghplxntmcirvdofllgkr.supabase.co" />
+    <title>PESI Ponto — Oficineiro · Coordenador · Admin</title>
+    <style>
+      html,body{margin:0;background:#f6f8fb;color:#1e293b;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif}
+      #root{min-height:100dvh}
+      .splash{max-width:720px;margin:0 auto;padding:32px 16px;text-align:center}
+      .splash h1{color:#0f4c81;margin:0 0 8px;font-size:28px;letter-spacing:.2px}
+      .splash p{color:#64748b;margin:0}
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="splash"><h1>PESI Ponto</h1><p>Carregando PWA…</p></div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
+    <noscript>Ative o JavaScript para usar o PESI Ponto. PWA instalável em Android/iOS via “Adicionar à tela inicial”.</noscript>
   </body>
 </html>
